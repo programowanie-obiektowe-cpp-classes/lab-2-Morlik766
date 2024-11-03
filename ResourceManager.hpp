@@ -9,9 +9,6 @@ public:
     ResourceManager(const ResourceManager& other)
         : resource(std::make_unique< Resource >(*other.resource))
     {}
-
-    ResourceManager(ResourceManager&& other) noexcept : resource(std::move(other.resource)) {}
-
     ResourceManager& operator=(const ResourceManager& other)
     {
         if (this != &other) {
@@ -19,15 +16,6 @@ public:
         }
         return *this;
     }
-
-    ResourceManager& operator=(ResourceManager&& other) noexcept
-    {
-        if (this != &other) {
-            resource = std::move(other.resource);
-        }
-        return *this;
-    }
-
     double get() const { return resource->get(); }
 
 private:
